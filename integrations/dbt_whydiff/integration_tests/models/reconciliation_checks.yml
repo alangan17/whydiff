@@ -1,0 +1,11 @@
+version: 2
+seeds:
+  - name: expected
+    data_tests:
+      - whydiff.reconciliation:
+          arguments:
+            compare_model: ref('actual')
+            unique_key: [id]
+            measures:
+              - name: amount
+                expression: sum(amount)

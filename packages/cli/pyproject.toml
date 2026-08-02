@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "whydiff-cli"
+version = "0.1.0"
+description = "Command-line interface for deterministic data reconciliation"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+dependencies = [
+  "whydiff-core==0.1.0",
+  "typer>=0.12,<1",
+  "PyYAML>=6,<7",
+]
+
+[project.scripts]
+whydiff = "whydiff_cli.main:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/whydiff_cli"]

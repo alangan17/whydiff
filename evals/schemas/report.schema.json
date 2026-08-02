@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["root_cause", "confidence", "evidence"],
+  "properties": {
+    "root_cause": {"type": "string"},
+    "confidence": {"enum": ["confirmed", "likely", "unknown"]},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool", "finding"],
+        "properties": {"tool": {"type": "string"}, "finding": {"type": "string"}},
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

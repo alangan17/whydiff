@@ -1,0 +1,14 @@
+connection:
+  database: examples/duckdb/whydiff_demo.duckdb
+  timeout_seconds: 30
+comparison:
+  left: expected
+  right: actual
+  unique_keys: [id]
+measures:
+  - name: amount
+    expression: sum(amount)
+    absolute_tolerance: 0
+output:
+  format: markdown
+sample_limit: 20

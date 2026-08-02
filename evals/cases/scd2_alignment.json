@@ -1,0 +1,1 @@
+{"id":"scd2-alignment","expected_root_cause":"scd2_alignment_gap","required_tools":["inspect_scd2_alignment"],"optional_tools":["inspect_date_boundaries","diagnose_difference"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

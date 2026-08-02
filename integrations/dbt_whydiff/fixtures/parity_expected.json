@@ -1,0 +1,11 @@
+{
+  "classifications": {
+    "1": "matched",
+    "2": "left_only",
+    "3": "right_only",
+    "4": "duplicate_key",
+    "5": "duplicate_key"
+  },
+  "measure_findings": [],
+  "note": "Duplicate classification takes precedence for key 4 (shared) and key 5 (left-only)."
+}
