@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Self, cast
+from typing import Any, cast
 
 from pydantic import JsonValue
+from typing_extensions import Self
 
 from whydiff.adapters import BaseAdapter, DuckDBAdapter
 from whydiff.diagnostics.basic import compare_row_counts, compare_schema, inspect_relation

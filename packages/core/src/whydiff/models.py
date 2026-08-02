@@ -8,12 +8,26 @@ a major version bump.
 from __future__ import annotations
 
 import re
+import sys
 from decimal import Decimal
-from enum import StrEnum
+from enum import Enum
 
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, JsonValue, field_validator
 
 _IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_$-]*$")
+
+if sys.version_info >= (3, 11):
+    from enum import StrEnum as _StrEnum
+else:
+
+    class _StrEnum(str, Enum):
+        """Python 3.10 fallback preserving the public string-enum contract."""
+
+        def __str__(self) -> str:
+            return str.__str__(self)
+
+        def __format__(self, format_spec: str) -> str:
+            return str.__format__(self, format_spec)
 
 
 class ContractModel(BaseModel):
@@ -28,7 +42,7 @@ class ContractModel(BaseModel):
     )
 
 
-class FindingStatus(StrEnum):
+class FindingStatus(_StrEnum):
     """Severity of one diagnostic finding."""
 
     INFO = "info"
@@ -36,7 +50,7 @@ class FindingStatus(StrEnum):
     FAILURE = "failure"
 
 
-class ReportStatus(StrEnum):
+class ReportStatus(_StrEnum):
     """Overall outcome of a diagnosis report."""
 
     PASSED = "passed"

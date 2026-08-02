@@ -2,7 +2,7 @@
 name = "whydiff-workspace"
 version = "0.1.0"
 description = "Workspace tooling for WhyDiff"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 
 [dependency-groups]
 dev = [
@@ -25,7 +25,7 @@ whydiff-core = { workspace = true }
 members = ["packages/*"]
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py310"
 line-length = 100
 
 [tool.ruff.lint]
@@ -35,7 +35,7 @@ select = ["B", "E", "F", "I", "N", "UP"]
 "tests/**/*.py" = ["S101"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.10"
 strict = true
 packages = ["whydiff"]
 mypy_path = "packages/core/src"

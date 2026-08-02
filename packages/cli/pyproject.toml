@@ -7,7 +7,7 @@ name = "whydiff-cli"
 version = "0.1.0"
 description = "Command-line interface for deterministic data reconciliation"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 dependencies = [
   "whydiff-core==0.1.0",

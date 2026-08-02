@@ -1,6 +1,6 @@
 # Contributing to WhyDiff
 
-WhyDiff supports Python 3.12 and 3.13 and uses `uv` for a reproducible workspace.
+WhyDiff supports Python 3.10 through 3.13 and uses `uv` for a reproducible workspace.
 
 ## Set up
 

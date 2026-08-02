@@ -6,7 +6,7 @@ duplicate keys, and numeric measures, then returns evidence and the generated
 SQL. The same core powers Python, a Typer CLI, dbt macros, and MCP tools; none of
 those paths calls an LLM.
 
-WhyDiff 0.1.0 supports local DuckDB diagnostics on Python 3.12 and 3.13.
+WhyDiff 0.1.0 supports local DuckDB diagnostics on Python 3.10 through 3.13.
 
 ## Quick start
 

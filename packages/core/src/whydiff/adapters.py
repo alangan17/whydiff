@@ -9,10 +9,11 @@ from pathlib import Path
 from threading import Event, Timer
 from time import perf_counter
 from types import TracebackType
-from typing import Any, Literal, Self
+from typing import Any, Literal
 
 import duckdb
 from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Self
 
 from whydiff.models import Relation
 from whydiff.sql_safety import (

@@ -4,7 +4,7 @@ import fnmatch
 import hashlib
 import time
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -254,7 +254,7 @@ class WhyDiffServer:
         payload: dict[str, Any] = redacted_payload
         payload["trace"] = {
             "operation": name,
-            "timestamp": datetime.now(UTC).isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "duration_ms": duration_ms,
             "connection_id": hashlib.sha256(self._database.encode()).hexdigest()[:12],
             "sample_limit": getattr(model, "sample_limit", None),
