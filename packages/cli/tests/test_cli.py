@@ -5,6 +5,7 @@ from pathlib import Path
 
 import duckdb
 import pytest
+from click.utils import strip_ansi
 from typer.testing import CliRunner
 from whydiff_cli.main import app
 
@@ -79,10 +80,11 @@ def test_invalid_yaml_is_a_configuration_error(tmp_path: Path) -> None:
 
 
 def test_help_contains_a_runnable_example() -> None:
-    result = runner.invoke(app, ["diagnose", "--help"])
+    result = runner.invoke(app, ["diagnose", "--help"], terminal_width=60)
 
     assert result.exit_code == 0
-    assert "whydiff diagnose --database" in result.stdout
+    normalized_help = " ".join(strip_ansi(result.stdout).split())
+    assert "whydiff diagnose --database" in normalized_help
 
 
 def test_unsafe_measure_expression_is_rejected_with_exit_four(tmp_path: Path) -> None:
