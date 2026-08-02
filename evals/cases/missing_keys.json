@@ -1,0 +1,1 @@
+{"id":"missing-keys","expected_root_cause":"missing_keys","required_tools":["compare_key_coverage"],"optional_tools":["inspect_relations","diagnose_difference"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

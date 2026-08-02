@@ -1,0 +1,1 @@
+{"id":"exact-match","expected_root_cause":"exact_match","required_tools":["diagnose_difference"],"optional_tools":["inspect_relations"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

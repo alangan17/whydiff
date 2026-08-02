@@ -1,0 +1,1 @@
+{"id":"join-fanout","expected_root_cause":"join_fanout_precursor","required_tools":["detect_fanout"],"optional_tools":["detect_duplicate_keys","compare_key_coverage","diagnose_difference"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

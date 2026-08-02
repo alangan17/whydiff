@@ -1,0 +1,1 @@
+{"id":"numeric-mismatch","expected_root_cause":"numeric_mismatch","required_tools":["compare_measures"],"optional_tools":["compare_key_coverage","diagnose_difference"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

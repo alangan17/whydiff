@@ -1,0 +1,7 @@
+whydiff_integration_tests:
+  target: test
+  outputs:
+    test:
+      type: duckdb
+      path: target/whydiff.duckdb
+      threads: 1

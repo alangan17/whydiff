@@ -1,0 +1,1 @@
+{"id":"duplicate-keys","expected_root_cause":"duplicate_keys","required_tools":["detect_duplicate_keys"],"optional_tools":["inspect_relations","diagnose_difference"],"forbidden_tools":["run_sql","write_relation","ask_llm"]}

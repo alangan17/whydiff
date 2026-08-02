@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "whydiff-core"
+version = "0.1.0"
+description = "Typed diagnostic contracts and secure database adapters for WhyDiff"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = [
+  "duckdb>=1.3.2",
+  "pydantic>=2.11.9",
+  "sqlglot>=27.17.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/whydiff"]
