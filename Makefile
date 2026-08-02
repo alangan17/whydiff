@@ -11,7 +11,7 @@ lint:
 	uv run ruff check .
 
 typecheck:
-	uv run mypy packages/core/src packages/cli/src packages/mcp/src evals
+	uv run mypy packages/core/src packages/core/typecheck packages/cli/src packages/mcp/src evals
 
 test:
 	uv run pytest

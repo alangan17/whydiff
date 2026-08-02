@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
@@ -31,3 +31,13 @@ jobs:
         run: make test
       - name: Build packages
         run: make build
+      - name: Verify wheels in a clean environment
+        run: |
+          uv venv --python ${{ matrix.python-version }} .venv-wheel
+          uv pip install --python .venv-wheel/bin/python dist/*.whl
+          .venv-wheel/bin/python scripts/verify_installed_packages.py
+      - name: Verify source distributions in a clean environment
+        run: |
+          uv venv --python ${{ matrix.python-version }} .venv-sdist
+          uv pip install --python .venv-sdist/bin/python dist/*.tar.gz
+          .venv-sdist/bin/python scripts/verify_installed_packages.py

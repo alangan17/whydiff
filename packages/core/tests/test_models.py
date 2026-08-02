@@ -1,5 +1,6 @@
 """Behavioral tests for the public WhyDiff model contracts."""
 
+import json
 from decimal import Decimal
 
 import pytest
@@ -33,6 +34,56 @@ def test_public_models_round_trip_through_json() -> None:
     )
 
     assert ReconcileRequest.model_validate_json(request.model_dump_json()) == request
+
+
+@pytest.mark.parametrize(
+    ("enum_type", "member", "value", "expected_repr"),
+    [
+        (FindingStatus, FindingStatus.FAILURE, "failure", "<FindingStatus.FAILURE: 'failure'>"),
+        (ReportStatus, ReportStatus.PASSED, "passed", "<ReportStatus.PASSED: 'passed'>"),
+    ],
+)
+def test_status_enums_keep_their_public_string_behavior(
+    enum_type: type[FindingStatus] | type[ReportStatus],
+    member: FindingStatus | ReportStatus,
+    value: str,
+    expected_repr: str,
+) -> None:
+    assert enum_type(value) is member
+    assert member == value
+    assert str(member) == value
+    assert f"{member}" == value
+    assert repr(member) == expected_repr
+
+
+def test_status_enums_keep_their_pydantic_wire_values() -> None:
+    finding = DiagnosticFinding(
+        code="missing_keys",
+        status=FindingStatus.FAILURE,
+        message="Keys are missing",
+    )
+    report = DiagnosisReport(status=ReportStatus.FAILED, findings=[finding])
+
+    assert (
+        DiagnosticFinding.model_validate(
+            {"code": "missing_keys", "status": "failure", "message": "Keys are missing"}
+        ).status
+        is FindingStatus.FAILURE
+    )
+    assert json.loads(report.model_dump_json()) == {
+        "status": "failed",
+        "findings": [
+            {
+                "code": "missing_keys",
+                "status": "failure",
+                "message": "Keys are missing",
+                "generated_sql": None,
+                "evidence": {},
+                "execution_metadata": {},
+                "metadata": {},
+            }
+        ],
+    }
 
 
 def test_duplicate_unique_keys_are_rejected_with_actionable_error() -> None:

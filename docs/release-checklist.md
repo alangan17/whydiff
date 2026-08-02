@@ -1,6 +1,6 @@
 # 0.1.0 release checklist
 
-- [ ] All workspace tests pass on Python 3.12 and 3.13 with required coverage.
+- [ ] All workspace tests pass on Python 3.10 through 3.13 with required coverage.
 - [ ] Formatting, lint, strict typing, and pre-commit checks pass.
 - [ ] dbt package dependencies install; seeds load; macros compile; normalized
       generic-test failures execute under the supported dbt-duckdb versions.

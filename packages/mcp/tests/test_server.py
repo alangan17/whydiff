@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -186,6 +187,10 @@ def test_tool_result_has_deterministic_sql_redaction_and_sanitized_trace(
     assert result["evidence"]["left_only_distinct_keys"] == 1
     assert result["trace"]["sanitized"] is True
     assert "fixture.duckdb" not in str(result["trace"])
+    timestamp = result["trace"]["timestamp"]
+    parsed_timestamp = datetime.fromisoformat(timestamp)
+    assert timestamp.endswith("+00:00")
+    assert parsed_timestamp.tzinfo == timezone.utc
 
     inspection = asyncio.run(
         server.call_tool("inspect_relations", {"relations": ["expected"], "sample_limit": 5})
